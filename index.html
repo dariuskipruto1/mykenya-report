@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Kenya Report</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Gradient header background */
+    .header-gradient {
+      background: linear-gradient(135deg, #0d0d0d, #1a1a40, #3d3d80);
+    }
+    /* Icon colors */
+    .icon-gold { color: #ffc107; }
+    .icon-blue { color: #0dcaf0; }
+    .icon-green { color: #198754; }
+    /* Hero section */
+    .hero {
+      position: relative;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    footer {
+      background: #0d0d0d;
+      color: #fff;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sticky gradient header -->
+<div class="container-fluid py-4 text-white sticky-top shadow header-gradient">
+  <div class="text-center">
+    <h1 class="text-warning">My Kenya Report</h1>
+    <p class="lead fst-italic">Your voice, Kenya’s accountability</p>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">My Kenya Report</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <!-- Reports Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reports
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reportsDropdown">
+            <li><a class="dropdown-item" href="reports.html"><i class="fa-solid fa-clock me-2 icon-gold"></i>Latest Reports</a></li>
+            <li><a class="dropdown-item" href="reports-by-county.html"><i class="fa-solid fa-map me-2 icon-gold"></i>By County</a></li>
+            <li><a class="dropdown-item" href="reports-by-category.html"><i class="fa-solid fa-list me-2 icon-gold"></i>By Category</a></li>
+          </ul>
+        </li>
+
+        <!-- Submit Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="submitDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Submit
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="submitDropdown">
+            <li><a class="dropdown-item" href="submit.html"><i class="fa-solid fa-file-circle-plus me-2 icon-blue"></i>Submit New Report</a></li>
+            <li><a class="dropdown-item" href="guidelines.html"><i class="fa-solid fa-book me-2 icon-blue"></i>Guidelines</a></li>
+          </ul>
+        </li>
+
+        <!-- About Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            About
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="aboutDropdown">
+            <li><a class="dropdown-item" href="mission.html"><i class="fa-solid fa-bullseye me-2 icon-green"></i>Our Mission</a></li>
+            <li><a class="dropdown-item" href="about.html"><i class="fa-solid fa-users me-2 icon-green"></i>Team</a></li>
+            <li><a class="dropdown-item" href="contact.html"><i class="fa-solid fa-envelope me-2 icon-green"></i>Contact</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-content" id="heroContent">
+    <h2 class="display-4 fw-bold">Speak Up for Accountability</h2>
+    <p class="lead mb-4">Your reports help drive transparency and change across Kenya.</p>
+    <a href="submit.html" class="btn btn-warning btn-lg">Submit a Report</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center">
+  <p>&copy; 2026 My Kenya Report | Transparency & Accountability</p>
+</footer>
+
+<!-- Bootstrap JS bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Hero background rotation + text animation -->
+<script>
+  const hero = document.getElementById('hero');
+  const heroContent = document.getElementById('heroContent');
+  const images = [
+    'https://source.unsplash.com/1600x900/?kenya,landscape',
+    'https://source.unsplash.com/1600x900/?kenya,nairobi',
+    'https://source.unsplash.com/1600x900/?kenya,wildlife',
+    'https://source.unsplash.com/1600x900/?kenya,community'
+  ];
+  let current = 0;
+
+  function changeBackground() {
+    hero.style.backgroundImage = `url('${images[current]}')`;
+    current = (current + 1) % images.length;
+    heroContent.style.animation = 'none';
+    void heroContent.offsetWidth;
+    heroContent.style.animation = 'fadeIn 2s forwards';
+  }
+
+  changeBackground();
+  setInterval(changeBackground, 6000);
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Report - My Kenya Report</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .header-gradient {
+      background: linear-gradient(135deg, #0d0d0d, #1a1a40, #3d3d80);
+    }
+    .icon-blue { color: #0dcaf0; }
+    body { background-color: #f8f9fa; }
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #0d0d0d;
+      color: #fff;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="container-fluid py-4 text-white sticky-top shadow header-gradient">
+  <div class="text-center">
+    <h1 class="text-warning">My Kenya Report</h1>
+    <p class="lead fst-italic">Your voice, Kenya’s accountability</p>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">My Kenya Report</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <!-- Reports Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reports
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reportsDropdown">
+            <li><a class="dropdown-item" href="reports.html"><i class="fa-solid fa-clock me-2 icon-blue"></i>Latest Reports</a></li>
+            <li><a class="dropdown-item" href="reports-by-county.html"><i class="fa-solid fa-map me-2 icon-blue"></i>By County</a></li>
+            <li><a class="dropdown-item" href="reports-by-category.html"><i class="fa-solid fa-list me-2 icon-blue"></i>By Category</a></li>
+          </ul>
+        </li>
+        <!-- Submit Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="submitDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Submit
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="submitDropdown">
+            <li><a class="dropdown-item" href="submit.html"><i class="fa-solid fa-file-circle-plus me-2 icon-blue"></i>Submit New Report</a></li>
+            <li><a class="dropdown-item" href="guidelines.html"><i class="fa-solid fa-book me-2 icon-blue"></i>Guidelines</a></li>
+          </ul>
+        </li>
+        <!-- About Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            About
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="aboutDropdown">
+            <li><a class="dropdown-item" href="mission.html"><i class="fa-solid fa-bullseye me-2 icon-blue"></i>Our Mission</a></li>
+            <li><a class="dropdown-item" href="team.html"><i class="fa-solid fa-users me-2 icon-blue"></i>Team</a></li>
+            <li><a class="dropdown-item" href="contact.html"><i class="fa-solid fa-envelope me-2 icon-blue"></i>Contact</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Submit Form -->
+<div class="form-container">
+  <h2 class="mb-4 text-center">Submit a New Report</h2>
+  <form th:action="@{/reports}" method="post" th:object="${report}">
+    <!-- Title -->
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" class="form-control" th:field="*{title}" required>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" rows="4" th:field="*{description}" required></textarea>
+    </div>
+
+    <!-- County Dropdown -->
+    <div class="mb-3">
+      <label class="form-label">County</label>
+      <select class="form-select" th:field="*{county}" required>
+        <option value="" disabled selected>Select County</option>
+        <option>Baringo</option><option>Bomet</option><option>Bungoma</option><option>Busia</option>
+        <option>Elgeyo-Marakwet</option><option>Embu</option><option>Garissa</option><option>Homa Bay</option>
+        <option>Isiolo</option><option>Kajiado</option><option>Kakamega</option><option>Kericho</option>
+        <option>Kiambu</option><option>Kilifi</option><option>Kirinyaga</option><option>Kisii</option>
+        <option>Kisumu</option><option>Kitui</option><option>Kwale</option><option>Laikipia</option>
+        <option>Lamu</option><option>Machakos</option><option>Makueni</option><option>Mandera</option>
+        <option>Marsabit</option><option>Meru</option><option>Migori</option><option>Mombasa</option>
+        <option>Murang'a</option><option>Nairobi</option><option>Nakuru</option><option>Nandi</option>
+        <option>Narok</option><option>Nyamira</option><option>Nyandarua</option><option>Nyeri</option>
+        <option>Samburu</option><option>Siaya</option><option>Taita-Taveta</option><option>Tana River</option>
+        <option>Tharaka-Nithi</option><option>Trans Nzoia</option><option>Turkana</option><option>Uasin Gishu</option>
+        <option>Vihiga</option><option>Wajir</option><option>West Pokot</option>
+      </select>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <input type="text" class="form-control" th:field="*{category}" required>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-warning w-100">Submit Report</button>
+  </form>
+</div>
+
+<!-- Footer -->
+<footer class="text-center">
+  <p>&copy; 2026 My Kenya Report | Transparency & Accountability</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
